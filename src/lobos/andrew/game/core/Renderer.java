@@ -8,8 +8,6 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCanvas;
 import javax.media.opengl.GLEventListener;
-import javax.media.opengl.glu.GLU;
-
 import lobos.andrew.game.hid.Keyboard;
 import lobos.andrew.game.scene.Scene;
 
@@ -18,12 +16,25 @@ import com.sun.opengl.util.Animator;
 public class Renderer implements GLEventListener
 {
 	private Scene scene = null;
+	
+	private static Renderer instance = null;
+	
+	public static Renderer getInstance()
+	{
+		if ( instance == null )
+			instance = new Renderer();
+		return instance;
+	}
+	
 	public Renderer()
 	{
 		Frame frame = new Frame("Game");
+		frame.setTitle("Game");
+		frame.setName("Game");
+		
 		GLCanvas canvas = new GLCanvas();
 		canvas.addGLEventListener(this);
-		frame.setSize(800, 600);
+		frame.setSize(800, 800);
 		frame.add(canvas);
 		frame.addKeyListener(Keyboard.getInstance());
 		
@@ -54,7 +65,7 @@ public class Renderer implements GLEventListener
         gl.glLoadIdentity();
         
         if ( scene != null )
-        	scene.render(gl);
+        	scene.render(gl, drawable);
         
 		gl.glFlush();
 		
@@ -80,12 +91,9 @@ public class Renderer implements GLEventListener
 	@Override
 	public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
         GL gl = drawable.getGL();
-        GLU glu = new GLU();
-
         if (height <= 0)
             height = 1;
 
-        final float h = (float) width / (float) height;
         gl.glViewport(0, 0, width, height);
         gl.glMatrixMode(GL.GL_PROJECTION);
         gl.glLoadIdentity();
@@ -95,6 +103,11 @@ public class Renderer implements GLEventListener
 	public void setScene(Scene s)
 	{
 		scene = s;
+	}
+	
+	public Scene getCurrentScene()
+	{
+		return scene;
 	}
 
 }

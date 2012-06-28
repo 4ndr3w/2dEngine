@@ -1,13 +1,12 @@
-import lobos.andrew.game.core.Renderer;
+ import lobos.andrew.game.core.Renderer;
 
 
 public class Game {
 	public static void main(String[] args) {
-		Renderer r = new Renderer();
-		MyClass level = new MyClass();
+		Renderer r = Renderer.getInstance();
+		MyScene level = new MyScene();
 		
 		r.setScene(level);
-		
 	}
 
 }
