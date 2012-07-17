@@ -36,4 +36,9 @@ public class Text extends BasicObject {
 	{
 		text = t;
 	}
+	
+	public String getText()
+	{
+		return text;
+	}
 }

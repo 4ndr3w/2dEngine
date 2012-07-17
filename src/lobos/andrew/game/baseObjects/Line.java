@@ -4,7 +4,6 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
 import lobos.andrew.game.scene.BasicObject;
-import lobos.andrew.game.scene.SceneObject;
 
 public class Line extends BasicObject 
 {

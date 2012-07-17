@@ -41,7 +41,7 @@ public abstract class Scene implements KeyListener {
 		background = color;
 	}
 	
-	public final void render(GL gl, GLAutoDrawable renderable)
+	public void render(GL gl, GLAutoDrawable renderable)
 	{
 		sceneLogic();
 		

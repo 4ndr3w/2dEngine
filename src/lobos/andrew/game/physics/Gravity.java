@@ -25,7 +25,6 @@ public class Gravity
 		Iterator<SceneObject> it = Renderer.getInstance().getCurrentScene().iterator();
 		while ( it.hasNext() )
 		{
-
 			SceneObject thisObject = it.next();
 			if ( thisObject.isGravityAffected() && !Contact.isTouchingSomethingSolid(thisObject) )
 				thisObject.setLocation(thisObject.getX(), thisObject.getY()-0.01f);

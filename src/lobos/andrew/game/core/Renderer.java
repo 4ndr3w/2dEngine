@@ -37,6 +37,7 @@ public class Renderer implements GLEventListener
 		frame.setSize(800, 800);
 		frame.add(canvas);
 		frame.addKeyListener(Keyboard.getInstance());
+		canvas.addKeyListener(Keyboard.getInstance());
 		
         final Animator animator = new Animator(canvas);
         frame.addWindowListener(new WindowAdapter() {
