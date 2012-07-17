@@ -1,0 +1,14 @@
+.DS_Store
+.DS_Store
+.classpath
+.project
+.settings
+
+*.jnilib
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear

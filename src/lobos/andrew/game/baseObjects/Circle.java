@@ -4,7 +4,6 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
 import lobos.andrew.game.scene.BasicObject;
-import lobos.andrew.game.scene.SceneObject;
 
 public class Circle extends BasicObject
 {
@@ -28,9 +27,6 @@ public class Circle extends BasicObject
 		float highestY = -1;
 		float XLeft = 1;
 		float lowestY = 1;
-		
-		
-		
 		
 		if ( fill )
 			gl.glBegin(GL.GL_TRIANGLE_FAN);
