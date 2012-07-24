@@ -88,4 +88,24 @@ public class BoundingBox
 		return false;
 		
 	}
+	
+	public boolean isAbove(BoundingBox box)
+	{
+		return false;
+	}
+	
+	public boolean isBelow(BoundingBox box)
+	{
+		return false;
+	}
+	
+	public boolean isLeftOf(BoundingBox box)
+	{
+		return false;
+	}
+	
+	public boolean isRightOf(BoundingBox box)
+	{
+		return false;
+	}
 }

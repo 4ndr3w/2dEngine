@@ -1,7 +1,6 @@
 package lobos.andrew.game.networking;
 
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class PlayerTable {
 	protected HashMap<String, Object> map;
@@ -14,17 +13,6 @@ public class PlayerTable {
 	public HashMap<String, Object> getHashMap()
 	{
 		return map;
-	}
-	
-	public void mix(HashMap<String, Object> otherMap)
-	{
-		Iterator<String> it = otherMap.keySet().iterator();
-		while ( it.hasNext() )
-		{
-			String thisKey = it.next();
-			//System.out.println("Added "+thisKey+" with value "+otherMap.get(thisKey));
-			map.put(thisKey, otherMap.get(thisKey));
-		}
 	}
 	
 	public void put(String key, Object value)

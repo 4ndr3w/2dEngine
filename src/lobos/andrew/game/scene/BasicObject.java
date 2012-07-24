@@ -1,11 +1,11 @@
 package lobos.andrew.game.scene;
 
 import java.awt.Color;
-
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
 import lobos.andrew.game.baseObjects.BoundingBox;
+import lobos.andrew.game.networking.Properties;
 import lobos.andrew.game.physics.Force;
 
 public abstract class BasicObject implements SceneObject {
@@ -16,7 +16,12 @@ public abstract class BasicObject implements SceneObject {
 	public abstract void renderObject(GL gl, GLAutoDrawable renderable);
 	protected Surface solidType = Surface.NOTSOLID;
 	protected Force appliedForce = null;
+	private Properties properties = new Properties();
 	
+	public void setPropertiesProvider(Properties p)
+	{
+		properties = p;
+	}
 	
 	public void render(GL gl, GLAutoDrawable renderable)
 	{
@@ -144,5 +149,10 @@ public abstract class BasicObject implements SceneObject {
 	@Override
 	public boolean isOutOfBounds() {
 		return (getY()>=1.0f)||(getY()<=-1.0f)||(getX()>=1.0f)||(getX()<=-1.0f);
+	}
+	
+	public Properties getProperties()
+	{
+		return properties;
 	}
 }

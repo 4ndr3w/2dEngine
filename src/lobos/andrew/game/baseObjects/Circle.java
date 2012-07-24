@@ -47,10 +47,10 @@ public class Circle extends BasicObject
 			
 			if ( x > XRight )
 				XRight = x;
+			
 			if ( x < XLeft )
 				XLeft = x;
 		
-			
 			gl.glVertex2d(x+getX(), y+getY());
 		}
 		gl.glEnd();		
