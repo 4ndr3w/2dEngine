@@ -17,6 +17,7 @@ public class ContainerObject implements SceneObject {
 	protected boolean gravityAffected = false;
 	protected Surface solidType = Surface.NOTSOLID;
 	protected Force appliedForce = null;
+	protected Vector<SceneObject> subscribedObjects = new Vector<SceneObject>();
 	
 	public ContainerObject(float xPos, float yPos)
 	{
@@ -104,6 +105,25 @@ public class ContainerObject implements SceneObject {
 				return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public void interact() {
+		Iterator<SceneObject> it = subscribedObjects.iterator();
+		while (it.hasNext())
+		{
+			it.next().interact();
+		}
+	}
+	
+	public boolean interactable()
+	{ 
+		return false;
+	}
+	
+	public void subscribe(SceneObject obj)
+	{
+		subscribedObjects.add(obj);
 	}
 
 	@Override

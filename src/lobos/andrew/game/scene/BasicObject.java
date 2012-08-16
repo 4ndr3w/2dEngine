@@ -1,6 +1,9 @@
 package lobos.andrew.game.scene;
 
 import java.awt.Color;
+import java.util.Iterator;
+import java.util.Vector;
+
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
@@ -17,6 +20,7 @@ public abstract class BasicObject implements SceneObject {
 	protected Surface solidType = Surface.NOTSOLID;
 	protected Force appliedForce = null;
 	private Properties properties = new Properties();
+	protected Vector<SceneObject> subscribedObjects = new Vector<SceneObject>();
 	
 	public void setPropertiesProvider(Properties p)
 	{
@@ -154,5 +158,24 @@ public abstract class BasicObject implements SceneObject {
 	public Properties getProperties()
 	{
 		return properties;
+	}
+	
+	@Override
+	public void interact() {
+		Iterator<SceneObject> it = subscribedObjects.iterator();
+		while (it.hasNext())
+		{
+			it.next().interact();
+		}
+	}
+	
+	public boolean interactable()
+	{ 
+		return false;
+	}
+	
+	public void subscribe(SceneObject obj)
+	{
+		subscribedObjects.add(obj);
 	}
 }

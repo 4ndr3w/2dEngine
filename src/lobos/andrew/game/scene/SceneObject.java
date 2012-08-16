@@ -26,4 +26,7 @@ public interface SceneObject {
 	
 	public void applyForce(Force f);
 	public Force getForce();
+	
+	public void interact();
+	public boolean interactable();
 }

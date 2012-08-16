@@ -15,7 +15,6 @@ public class MyScene extends Scene {
 		player.setGravityAffected(true);
 		
 		addObject(player);
-		//addObject(new Rectangle(0,0, 0, 0, 0, 0, 0, 0, 0, 0));
 		addObject(hitme);
 		addObject(otherHit);
 		setCharacter(player);

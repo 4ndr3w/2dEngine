@@ -76,6 +76,19 @@ public abstract class Scene implements KeyListener {
 				character.moveUp();	
 			else if ( event.getKeyChar() == 's' )
 				character.moveDown();	
+			else if ( event.getKeyChar() == 'e' )
+			{
+				Iterator<SceneObject> it = objects.iterator();
+				while ( it.hasNext() )
+				{
+					SceneObject obj = it.next();
+					if ( obj.isTouching(character) && obj.interactable() )
+					{
+						
+					}
+						
+				}
+			}
 		}
 	}
 	
