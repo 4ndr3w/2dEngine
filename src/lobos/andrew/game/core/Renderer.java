@@ -11,8 +11,6 @@ import lobos.andrew.game.scene.Scene;
 public class Renderer extends Thread
 {
 	
-	private static Renderer instance = null;
-	
 	private static Scene scene = null;
 
 	public static void init(Scene firstScene) 
