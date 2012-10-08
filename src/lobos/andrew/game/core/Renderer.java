@@ -1,112 +1,58 @@
 package lobos.andrew.game.core;
 
-import java.awt.Frame;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.GL11;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GLAutoDrawable;
-import javax.media.opengl.GLCanvas;
-import javax.media.opengl.GLEventListener;
-import lobos.andrew.game.hid.Keyboard;
 import lobos.andrew.game.scene.Scene;
 
-import com.sun.opengl.util.Animator;
 
-public class Renderer implements GLEventListener
+public class Renderer extends Thread
 {
-	private Scene scene = null;
 	
 	private static Renderer instance = null;
 	
-	public static Renderer getInstance()
-	{
-		if ( instance == null )
-			instance = new Renderer();
-		return instance;
-	}
-	
-	public Renderer()
-	{
-		Frame frame = new Frame("Game");
-		frame.setTitle("Game");
-		frame.setName("Game");
-		
-		GLCanvas canvas = new GLCanvas();
-		canvas.addGLEventListener(this);
-		frame.setSize(800, 800);
-		frame.add(canvas);
-		frame.addKeyListener(Keyboard.getInstance());
-		canvas.addKeyListener(Keyboard.getInstance());
-		
-        final Animator animator = new Animator(canvas);
-        frame.addWindowListener(new WindowAdapter() {
+	private static Scene scene = null;
 
-         @Override
-         public void windowClosing(WindowEvent e) {
-             new Thread(new Runnable() {
-                 public void run() {
-                     animator.stop();
-                     System.exit(0);
-                 }
-             }).start();
-         }
-     });
-     
-     frame.setLocationRelativeTo(null);
-     frame.setVisible(true);   
-	 animator.start();	
-	}
-
-	@Override
-	public void display(GLAutoDrawable drawable) {
-		GL gl = drawable.getGL();
-		
-        gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-        gl.glLoadIdentity();
-        
-        if ( scene != null )
-        	scene.render(gl, drawable);
-        
-		gl.glFlush();
+	public static void init(Scene firstScene) 
+	{
 		
 		try {
-			Thread.sleep(20);
-		} catch (InterruptedException e) {
+			Display.setDisplayMode(new DisplayMode(800,800));
+			Display.create();
+			GL11.glDisable(GL11.GL_DEPTH_TEST);
+			
+			GL11.glOrtho(0, 800, 800, 0, 0, 0);
+			setScene(firstScene);
+		} catch (LWJGLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.exit(0);
 		}
 	}
 
-	@Override
-	public void displayChanged(GLAutoDrawable arg0, boolean arg1, boolean arg2) {
+	public static void renderLoop() {
+		while ( !Display.isCloseRequested() )
+		{
+	        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+	        GL11.glLoadIdentity();
+	        
+	        if ( scene != null )
+	        	scene.render();
+			GL11.glFlush();
+			Display.update();
+			Display.sync(10);
+		}
 	}
 
-	@Override
-	public void init(GLAutoDrawable drawable) {
-		GL gl = drawable.getGL();
-		
-		gl.setSwapInterval(1);
-        gl.glShadeModel(GL.GL_SMOOTH);
-	}
-
-	@Override
-	public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
-        GL gl = drawable.getGL();
-        if (height <= 0)
-            height = 1;
-
-        gl.glViewport(0, 0, width, height);
-        gl.glMatrixMode(GL.GL_PROJECTION);
-        gl.glLoadIdentity();
-		
-	}
 	
-	public void setScene(Scene s)
+	public static void setScene(Scene s)
 	{
 		scene = s;
 	}
 	
-	public Scene getCurrentScene()
+	public static Scene getCurrentScene()
 	{
 		return scene;
 	}

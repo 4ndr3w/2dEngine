@@ -1,6 +1,6 @@
 package lobos.andrew.game.baseObjects;
 
-import javax.media.opengl.GL;
+import static org.lwjgl.opengl.GL11.*;
 
 public class BoundingBox 
 {
@@ -52,26 +52,26 @@ public class BoundingBox
 		return rightX+xPos;
 	}
 	
-	public void render(GL gl)
+	public void render()
 	{
 		if ( !renderBoxes )
 			return;
 		
-		gl.glBegin(GL.GL_LINES);
+		glBegin(GL_LINES);
 		
-		gl.glVertex2d(getLeftX(), getHighestY());
-		gl.glVertex2d(getRightX(), getHighestY());
+		glVertex2d(getLeftX(), getHighestY());
+		glVertex2d(getRightX(), getHighestY());
 		
-		gl.glVertex2d(getLeftX(), getLowestY());
-		gl.glVertex2d(getRightX(), getLowestY());
+		glVertex2d(getLeftX(), getLowestY());
+		glVertex2d(getRightX(), getLowestY());
 		
-		gl.glVertex2d(getLeftX(), getHighestY());
-		gl.glVertex2d(getLeftX(), getLowestY());
+		glVertex2d(getLeftX(), getHighestY());
+		glVertex2d(getLeftX(), getLowestY());
 		
-		gl.glVertex2d(getRightX(), getHighestY());
-		gl.glVertex2d(getRightX(), getLowestY());
+		glVertex2d(getRightX(), getHighestY());
+		glVertex2d(getRightX(), getLowestY());
 		
-		gl.glEnd();
+		glEnd();
 	}
 	
 	

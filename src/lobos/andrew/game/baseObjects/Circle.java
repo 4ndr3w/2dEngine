@@ -1,9 +1,7 @@
 package lobos.andrew.game.baseObjects;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GLAutoDrawable;
-
 import lobos.andrew.game.scene.BasicObject;
+import static org.lwjgl.opengl.GL11.*;
 
 public class Circle extends BasicObject
 {
@@ -21,7 +19,7 @@ public class Circle extends BasicObject
 	}
 
 	@Override
-	public void renderObject(GL gl, GLAutoDrawable renderable) 
+	public void renderObject() 
 	{
 		float XRight = -1;
 		float highestY = -1;
@@ -29,9 +27,9 @@ public class Circle extends BasicObject
 		float lowestY = 1;
 		
 		if ( fill )
-			gl.glBegin(GL.GL_TRIANGLE_FAN);
+			glBegin(GL_TRIANGLE_FAN);
 		else
-			gl.glBegin(GL.GL_LINE_LOOP);
+			glBegin(GL_LINE_LOOP);
 		
 		for ( int i = 0; i < 360; i++ )
 		{
@@ -51,15 +49,15 @@ public class Circle extends BasicObject
 			if ( x < XLeft )
 				XLeft = x;
 		
-			gl.glVertex2d(x+getX(), y+getY());
+			glVertex2d(x+getX(), y+getY());
 		}
-		gl.glEnd();		
+		glEnd();		
 		
 		boundingBox.setExtremes(highestY, lowestY, XLeft, XRight);
 		
 		boundingBox.setLocation(getX(), getY());
 		
-		boundingBox.render(gl);
+		boundingBox.render();
 	}
 }
 

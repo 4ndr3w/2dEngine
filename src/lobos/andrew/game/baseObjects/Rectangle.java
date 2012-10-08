@@ -1,7 +1,7 @@
 package lobos.andrew.game.baseObjects;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GLAutoDrawable;
+import static org.lwjgl.opengl.GL11.*;
+
 
 import lobos.andrew.game.scene.BasicObject;
 import lobos.andrew.game.scene.SceneObject;
@@ -39,15 +39,15 @@ public class Rectangle extends BasicObject {
 	}
 	
 	@Override
-	public void renderObject(GL gl, GLAutoDrawable renderable) {
-		gl.glBegin(GL.GL_QUADS);
+	public void renderObject() {
+		glBegin(GL_QUADS);
 		
-		gl.glVertex2f(point1X+xPos, point1Y+yPos);
-		gl.glVertex2f(point2X+xPos, point2Y+yPos);
-		gl.glVertex2f(point3X+xPos, point3Y+yPos);
-		gl.glVertex2f(point4X+xPos, point4Y+yPos);
+		glVertex2f(point1X+xPos, point1Y+yPos);
+		glVertex2f(point2X+xPos, point2Y+yPos);
+		glVertex2f(point3X+xPos, point3Y+yPos);
+		glVertex2f(point4X+xPos, point4Y+yPos);
 		
-		gl.glEnd();
+		glEnd();
 		
 	}
 

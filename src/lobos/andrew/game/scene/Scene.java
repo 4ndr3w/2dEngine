@@ -6,9 +6,7 @@ import java.awt.event.KeyListener;
 import java.util.Iterator;
 import java.util.Vector;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GLAutoDrawable;
-
+import static org.lwjgl.opengl.GL11.*;
 import lobos.andrew.game.objects.ControllableCharacter;
 import lobos.andrew.game.physics.Gravity;
 
@@ -41,18 +39,18 @@ public abstract class Scene implements KeyListener {
 		background = color;
 	}
 	
-	public void render(GL gl, GLAutoDrawable renderable)
+	public void render()
 	{
 		sceneLogic();
 		
 		Gravity.getInstance().run();
-		gl.glClearColor((float)background.getRed()/255, (float)background.getGreen()/255, (float)background.getBlue()/255, 0);
+		glClearColor((float)background.getRed()/255, (float)background.getGreen()/255, (float)background.getBlue()/255, 0);
 		Iterator<SceneObject> it = objects.iterator();
 		while ( it.hasNext() )
 		{
 			SceneObject obj = (SceneObject) it.next();
 			if ( obj.shouldRender() )
-				obj.render(gl, renderable);
+				obj.render();
 		}
 	}
 	

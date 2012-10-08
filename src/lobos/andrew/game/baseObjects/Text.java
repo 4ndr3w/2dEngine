@@ -2,34 +2,29 @@ package lobos.andrew.game.baseObjects;
 
 import java.awt.Font;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GLAutoDrawable;
-
-import com.sun.opengl.util.j2d.TextRenderer;
+import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.UnicodeFont;
 
 import lobos.andrew.game.scene.BasicObject;
 
 public class Text extends BasicObject {
-	TextRenderer renderer = null;
+	UnicodeFont font = null;
 	String text = "";
 	public Text(Font font, float xPos, float yPos)
 	{
 		super(xPos, yPos);
-		renderer = new TextRenderer(font);
+		this.font = new UnicodeFont(font);
 	}
 	
 	public void setFont(Font f)
 	{
-		renderer = new TextRenderer(f);
+		this.font = new UnicodeFont(f);
 	}
 	
 	@Override
-	public void renderObject(GL gl, GLAutoDrawable renderable) 
+	public void renderObject() 
 	{
-		renderer.beginRendering(renderable.getWidth(), renderable.getHeight());
-		renderer.setColor(color);
-		renderer.draw(text, (int)Math.floor((getX()+0.5f)*renderable.getWidth()), (int)Math.floor((getY()+0.5f)*renderable.getHeight()));
-		renderer.endRendering();
+		font.drawString(getX(), getY(), text);
 	}
 	
 	public void setText(String t)

@@ -16,7 +16,7 @@ public class Contact
 	
 	public static Vector<SceneObject> list(SceneObject obj)
 	{
-		Iterator<SceneObject> it = Renderer.getInstance().getCurrentScene().iterator();
+		Iterator<SceneObject> it = Renderer.getCurrentScene().iterator();
 		Vector<SceneObject> objectList = new Vector();
 		while ( it.hasNext() )
 		{

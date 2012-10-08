@@ -3,8 +3,6 @@ package lobos.andrew.game.scene;
 import java.util.Iterator;
 import java.util.Vector;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GLAutoDrawable;
 
 import lobos.andrew.game.baseObjects.BoundingBox;
 import lobos.andrew.game.physics.Force;
@@ -45,13 +43,13 @@ public class ContainerObject implements SceneObject {
 	}
 
 	@Override
-	public void render(GL gl, GLAutoDrawable renderable) {
+	public void render() {
 		Iterator<SceneObject> it = objects.iterator();
 		while ( it.hasNext() )
 		{
 			SceneObject thisObject = it.next();
-			thisObject.render(gl, renderable);
-			thisObject.getBoundingBox().render(gl);
+			thisObject.render();
+			thisObject.getBoundingBox().render();
 		}
 			
 	}

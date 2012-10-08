@@ -1,7 +1,6 @@
 package lobos.andrew.game.baseObjects;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GLAutoDrawable;
+import static org.lwjgl.opengl.GL11.*;
 
 import lobos.andrew.game.scene.BasicObject;
 
@@ -64,12 +63,12 @@ public class Line extends BasicObject
 	}
 
 	@Override
-	public void renderObject(GL gl, GLAutoDrawable renderable) 
+	public void renderObject() 
 	{
-		gl.glBegin(GL.GL_LINES);
-		gl.glVertex2f(startX+getX(), startY+getY());
-		gl.glVertex2f(stopX+getX(), stopY+getY());
-		gl.glEnd();
+		glBegin(GL_LINES);
+		glVertex2f(startX+getX(), startY+getY());
+		glVertex2f(stopX+getX(), stopY+getY());
+		glEnd();
 		
 		boundingBox.setExtremes(
 				(startY>stopY ? startY:stopY),

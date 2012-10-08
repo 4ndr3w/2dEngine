@@ -1,14 +1,12 @@
 package lobos.andrew.game.scene;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GLAutoDrawable;
 
 import lobos.andrew.game.baseObjects.BoundingBox;
 import lobos.andrew.game.physics.Force;
 
 public interface SceneObject {
 	public boolean shouldRender();
-	public void render(GL gl, GLAutoDrawable renderable);
+	public void render();
 	public float getX();
 	public float getY();
 	public void setLocation(float x, float y);

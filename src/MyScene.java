@@ -19,6 +19,7 @@ public class MyScene extends Scene {
 		addObject(otherHit);
 		setCharacter(player);
 	}
+	
 	@Override
 	public void sceneLogic() {
 		// TODO Auto-generated method stub

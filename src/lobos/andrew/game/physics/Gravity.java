@@ -22,7 +22,7 @@ public class Gravity
 	
 	public void run()
 	{
-		Iterator<SceneObject> it = Renderer.getInstance().getCurrentScene().iterator();
+		Iterator<SceneObject> it = Renderer.getCurrentScene().iterator();
 		while ( it.hasNext() )
 		{
 			SceneObject thisObject = it.next();

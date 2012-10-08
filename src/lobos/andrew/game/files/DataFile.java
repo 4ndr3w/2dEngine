@@ -28,6 +28,8 @@ public class DataFile {
 				if ( splitdata.length == 2 )
 					data.put(splitdata[0], splitdata[1]);
 			}
+			
+			reader.close();
 		}
 	}
 	

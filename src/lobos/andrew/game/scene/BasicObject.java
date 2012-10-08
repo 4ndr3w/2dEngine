@@ -4,8 +4,7 @@ import java.awt.Color;
 import java.util.Iterator;
 import java.util.Vector;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.GLAutoDrawable;
+import static org.lwjgl.opengl.GL11.*;
 
 import lobos.andrew.game.baseObjects.BoundingBox;
 import lobos.andrew.game.networking.Properties;
@@ -16,7 +15,7 @@ public abstract class BasicObject implements SceneObject {
 	protected Color color = Color.black;
 	protected BoundingBox boundingBox = new BoundingBox();
 	protected boolean gravityAffected = false;
-	public abstract void renderObject(GL gl, GLAutoDrawable renderable);
+	public abstract void renderObject();
 	protected Surface solidType = Surface.NOTSOLID;
 	protected Force appliedForce = null;
 	private Properties properties = new Properties();
@@ -27,7 +26,7 @@ public abstract class BasicObject implements SceneObject {
 		properties = p;
 	}
 	
-	public void render(GL gl, GLAutoDrawable renderable)
+	public void render()
 	{
 		if ( appliedForce != null )
 		{
@@ -40,9 +39,9 @@ public abstract class BasicObject implements SceneObject {
 		}
 
 		
-		gl.glColor3f((float)color.getRed()/255, (float)color.getGreen()/255, (float)color.getBlue()/255);
-		renderObject(gl, renderable);
-		boundingBox.render(gl);
+		glColor3f((float)color.getRed()/255, (float)color.getGreen()/255, (float)color.getBlue()/255);
+		renderObject();
+		boundingBox.render();
 	}
 	
 	protected float x,y,parentX,parentY;
